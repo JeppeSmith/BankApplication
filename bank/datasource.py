@@ -1,5 +1,6 @@
 import sqlite3
 from Account import Account
+from customer import customer
 
 class datasource:
     def __init__(self):
@@ -28,6 +29,11 @@ class datasource:
 
     def createAccount(self, account: Account):
         stmt = f"INSERT INTO Account (balance, accountNumber, customerId, accountType) VALUES ({account.balance}, {account.accountNumber}, {account.customerId}, \"{account.accountType}\")"
+        self.db.execute(stmt)
+        self.db.commit()
+
+    def createCustomer(self, customer: customer):
+        stmt = f"INSERT INTO Customer (Id, Name, SSN) VALUES ({customer.id}, \"{customer.name}\", {customer.ssn})"
         self.db.execute(stmt)
         self.db.commit()
 

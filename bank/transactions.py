@@ -2,13 +2,7 @@ import sqlite3
 from datetime import datetime
 class transactions():
     def __init__(self):
-            #,id, customerId,accountNumber,date,amount
             self.db = sqlite3.connect('Bank.db') 
-            #self.customerId = customerId
-            #self.accountNumber = accountNumber
-            #self.id = id
-            #self.date = date
-            #self.amount = float(amount)
     
     def trans(self, customerId, accountNumber, amount):
         

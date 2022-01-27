@@ -36,7 +36,7 @@ class bank():
     def runSystem(self):
         print('Välkommen!')
         while True:
-            print(' 1:Withdraw\n 2:Deposit\n 3:Show Account\n 4:Print all customers\n 5:Add Customer\n 6:Change customer name\n 7:Create account\n 8:Show account transactions\n 9:Show customer information\n 10:Remove account\n 11:Remove customer\n x for exit ')
+            print(' 1:Withdraw\n 2:Deposit\n 3:Show Account\n 4:Print all customers\n 5:Change customer name\n 6:Create account\n 7:Create Customer\n 8:Remove account\n 9:Remove customer\n x for exit ')
             
             i = input()
             if i == '1':
@@ -48,18 +48,14 @@ class bank():
             elif i == '4':
                 self.getCustomers()
             elif i == '5':
-                self.addCustomer()
-            elif i == '6':
                 self.updateCustomer()
-            elif i == '7':
+            elif i == '6':
                 self.createAccount()
+            elif i == '7':
+                self.createCustomer()
             elif i == '8':
-                self.showTransactions()
-            elif i == '9':
-                self.customerDetails()
-            elif i == '10':
                 self.close_account()
-            elif i == '11':
+            elif i == '9':
                 self.removeCustomer()
             elif i == 'x':
                 exit()
@@ -107,14 +103,14 @@ class bank():
         return
 
     def showAccount(self):
-        c_id = input("Enter customer id\n")
+        c_id = input("Enter customer id: \n")
         accounts = []
         for a in self.Account:
             if c_id == a.customerId:
                 accounts.append(a)
         for a in accounts:
             print(f"id: {a.accountNumber}")            
-        a_id = input("Enter account number\n")
+        a_id = input("Enter account number: \n")
         for a in accounts:
             if a.accountNumber == a_id:
                 a.showAccount()
@@ -126,6 +122,7 @@ class bank():
         for c in self.customers: 
             print(c.id, c.ssn, c.name)
 
+        
     def updateCustomer(self):
         c_id = input("Enter customerid to change\n")
         for c in self.customers:
@@ -141,23 +138,29 @@ class bank():
     def createAccount(self):
         c_id = input("Enter CustomerId to open account for\n")
         a_id  = int(self.Account[-1].accountNumber) + 1
-        accountType = input("enter AccountType")
+        accountType = input("enter AccountType: ")
         a = Account(0, a_id, c_id, accountType)
         self.ds.createAccount(a)
         return
 
-        
-    def showTransactions(self):
-        pass
+    def createCustomer(self):
+        c_id = int(self.customers[-1].id) + 1
+        name = input("enter Name: ")
+        ssn = input("Enter SSN: ")
+        c = customer(c_id, name, ssn)
+        self.ds.createCustomer(c)
+        return
+
     def customerDetails(self):
         pass
+
     def close_account(self):
-        b = input("SELECT SSN TO REMOVE ACCOUNT FROM\n")
-        a = input("SELECT ACCOUNT NUMBER TO REMOVE\n")
+        a = input("Select account number to remove: \n")
         self.ds.close_account(a)
         pass
+
     def removeCustomer(self):
-        a = input("SELECT ID TO REMOVE\n")
+        a = input("Select customer id to remove: \n")
         self.ds.remove_by_id(a)
     def exit():
         quit()
