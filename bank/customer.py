@@ -8,6 +8,7 @@ class customer:
 
         def changeName(self, name):
                 self.name = name
+                
         def createCustomer(self):
             pass
 

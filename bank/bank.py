@@ -16,12 +16,8 @@ class bank():
         self.transactions = []
         self.loadData()
         self.runSystem()
-        
-        
-
-    def addCustomer(self):
-        pass
-                   
+             
+             
     def loadData(self):
         f = open('Customer.txt', 'r')
         for line in f:
@@ -122,7 +118,6 @@ class bank():
         for c in self.customers: 
             print(c.id, c.ssn, c.name)
 
-        
     def updateCustomer(self):
         c_id = input("Enter customerid to change\n")
         for c in self.customers:
@@ -133,7 +128,6 @@ class bank():
                 return
         print("Couldn't find customer with id")
         return 
-
 
     def createAccount(self):
         c_id = input("Enter CustomerId to open account for\n")
